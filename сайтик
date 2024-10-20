@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW-CHAT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   
+    <header class="main-header">
+        <h1>NEW-CHAT</h1>
+    </header>
+
+    <div class="main-content">
+       
+        <aside class="left-sidebar">
+           
+            <ul id="navMenu">
+                <li><a href="Профиль">Профиль</a></li>
+                <li><a href="Сообщения">сообщения</a></li>
+            </ul>
+        </aside>
+
+      
+        <section class="right-content">
+           
+            <section id="Профиль">
+                <h2>Твой профиль</h2>
+                <img src="" alt="Твой аватар" class="аватар">
+                <button>Загрузить аватар</button>
+            </section>
+
+           
+            <section id="Сообщения">
+                <h2>Сообщения</h2>
+                <ul id="messageList"></ul>
+                <textarea id="messageInput" placeholder="Написать..."></textarea>
+                 <div id="messagesContainer"></div>
+                <button id="sendMessageButton">Отправить</button>
+            </section>
+        </section>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header.main-header {
+    background-color: #000000;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 20% auto;
+    gap: 20px;
+}
+
+.left-sidebar {
+    background-color: #F4F4F4;
+    padding: 10px;
+}
+
+.left-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-sidebar li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.left-sidebar li a:hover {
+    background-color: lightgray;
+}
+
+.right-content {
+    background-color: white;
+    padding: 20px;
+}
+
+#profile {
+    border-bottom: 1px solid lightgray;
+    padding: 20px 0;
+}
+
+#profile img.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#messages {
+    padding: 20px 0;
+}
+
+#messageList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#messageList li {
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+#messageInput {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+    padding: 10px;
+    border: 1px solid lightgray;
+}
+
+#sendMessageButton {
+    padding: 10px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+#sendMessageButton:hover {
+    background-color: rgb(96, 90, 180);
+}
+
+    
+    
