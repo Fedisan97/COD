@@ -195,7 +195,6 @@
     let username = 'Имя пользователя';
     let lastMessageTime = null;
 
-    /
     function addMessage(message, isYou) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', isYou ? 'you-message' : 'other-message');
@@ -206,13 +205,13 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
- 
+   
     function getFormattedTime() {
         const now = new Date();
         return `${now.getHours()}:${now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()}`;
     }
 
-
+    
     sendButton.addEventListener('click', () => {
         const textarea = document.querySelector('textarea[name="message"]');
         const message = textarea.value;
@@ -223,12 +222,12 @@
                 addMessage(`Друг: Привет! Как дела?`, false);
             }, 1000);
 
-          
+           
             textarea.value = '';
         }
     });
 
- 
+   
     function changeUsername() {
         const newName = prompt("Введите новое имя:");
         if (newName && newName.trim() !== '') {
@@ -237,18 +236,17 @@
         }
     }
 
- 
+   
     function showEmojiPicker() {
         emojiList.classList.toggle('show');
     }
 
-    
+  
     function addEmoji(emoji) {
         const textarea = document.querySelector('textarea[name="message"]');
         textarea.value += emoji;
         textarea.focus();
     }
-
 
     const emojis = ['😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂', '🙂', '🙃'];
     emojis.forEach(emoji => {
@@ -265,5 +263,3 @@
 </script>
 </body>
 </html>
-
-    
