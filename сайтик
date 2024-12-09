@@ -195,40 +195,40 @@
     let username = 'Имя пользователя';
     let lastMessageTime = null;
 
-    // Функция для добавления сообщения в историю
+    /
     function addMessage(message, isYou) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', isYou ? 'you-message' : 'other-message');
         messageElement.innerHTML = `<span>${message}</span><span class="time">${getFormattedTime()}</span>`;
         messagesContainer.appendChild(messageElement);
 
-        // Скролим вниз до конца окна сообщений
+        
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    // Форматирование времени
+ 
     function getFormattedTime() {
         const now = new Date();
         return `${now.getHours()}:${now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()}`;
     }
 
-    // Обработка отправки сообщения
+
     sendButton.addEventListener('click', () => {
         const textarea = document.querySelector('textarea[name="message"]');
         const message = textarea.value;
         if (message.trim() !== '') {
-            addMessage(`${username}: ${message}`, true); // Добавляем ваше сообщение
-            // Имитация ответа от другого участника чата через 1 секунду
+            addMessage(`${username}: ${message}`, true); 
+            
             setTimeout(() => {
                 addMessage(`Друг: Привет! Как дела?`, false);
             }, 1000);
 
-            // Очистка поля ввода после отправки
+          
             textarea.value = '';
         }
     });
 
-    // Изменение имени пользователя
+ 
     function changeUsername() {
         const newName = prompt("Введите новое имя:");
         if (newName && newName.trim() !== '') {
@@ -237,19 +237,19 @@
         }
     }
 
-    // Показать/скрыть список смайликов
+ 
     function showEmojiPicker() {
         emojiList.classList.toggle('show');
     }
 
-    // Добавление смайлика в текстовое поле
+    
     function addEmoji(emoji) {
         const textarea = document.querySelector('textarea[name="message"]');
         textarea.value += emoji;
         textarea.focus();
     }
 
-    // Заполнение списка смайликов
+
     const emojis = ['😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂', '🙂', '🙃'];
     emojis.forEach(emoji => {
         const emojiItem = document.createElement('span');
@@ -259,7 +259,7 @@
         emojiList.appendChild(emojiItem);
     });
 
-    // Генерация начальных сообщений
+  
     addMessage(`${username}: Привет! Как твои дела?`, true);
     addMessage("Друг: Всё отлично, а у тебя как?", false);
 </script>
