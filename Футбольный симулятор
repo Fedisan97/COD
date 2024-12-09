@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Футбольный Симулятор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/soccer_field.jpg'); /* Изменен фон на футбольное поле */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+
+        .card img {
+            width: 150px;
+            height: auto;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .match-result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#">Главная</a>
+    <a href="#teams">Команды</a>
+</nav>
+
+<div class="container">
+    <h1>Добро пожаловать!</h1>
+    <p>Выберите команду для начала симуляции:</p>
+    <div id="teams">
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/8/8a/FC_Real_Madrid_Logo.svg/800px-FC_Real_Madrid_Logo.svg.png" alt="Команда 1">
+            <h2>Реал Мадрид</h2>
+            <button class="btn" onclick="selectTeam('Реал Мадрид')">Выбрать</button>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/0/0a/FC_Liverpool.svg/187px-FC_Liverpool.svg.png" alt="Команда 2">
+            <h2>Ливерпуль</h2>
+            <button class="btn" onclick="selectTeam('Ливерпуль')">Выбрать</button>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/2/24/FC_Barcelona.svg/200px-FC_Barcelona.svg.png" alt="Команда 3">
+            <h2>Барселона</h2>
+            <button class="btn" onclick="selectTeam('Барселона')">Выбрать</button>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/200px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png" alt="Команда 4">
+            <h2>Бавария</h2>
+            <button class="btn" onclick="selectTeam('Бавария')">Выбрать</button>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/a/a7/Paris_Saint-Germain_F.C..svg/200px-Paris_Saint-Germain_F.C..svg.png" alt="Команда 5">
+            <h2>ПСЖ</h2>
+            <button class="btn" onclick="selectTeam('ПСЖ')">Выбрать</button>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/2/23/FC_Zenit_logo_2023.svg/800px-FC_Zenit_logo_2023.svg.png" alt="Команда 6">
+            <h2>Зенит</h2>
+            <button class="btn" onclick="selectTeam('Зенит')">Выбрать</button>
+        </div>
+    </div>
+
+    <div id="match-selection" style="display: none;">
+        <h1>Выбор соперника</h1>
+        <p>Выберите команду-соперника для вашей команды:</p>
+        <div id="opponents">
+            <button class="btn" onclick="startMatch('Реал Мадрид', 'Ливерпуль')">Ливерпуль</button>
+            <button class="btn" onclick="startMatch('Реал Мадрид', 'Барселона')">Барселона</button>
+            <button class="btn" onclick="startMatch('Реал Мадрид', 'Бавария')">Бавария</button>
+            <button class="btn" onclick="startMatch('Реал Мадрид', 'ПСЖ')">ПСЖ</button>
+            <button class="btn" onclick="startMatch('Реал Мадрид', 'Зенит')">Зенит</button>
+        </div>
+    </div>
+
+    <div id="match-result" style="display: none;">
+        <h1>Результаты матча</h1>
+        <p class="match-result"></p>
+    </div>
+</div>
+
+<script>
+    let selectedTeam;
+
+    function selectTeam(team) {
+        selectedTeam = team;
+        document.getElementById('teams').style.display = 'none';
+        document.getElementById('match-selection').style.display = 'block';
+    }
+
+    function startMatch(team1, team2) {
+        const score1 = Math.floor(Math.random() * 6);
+        const score2 = Math.floor(Math.random() * 6);
+        const resultText = `${team1} ${score1} : ${score2} ${team2}`;
+
+        document.getElementById('match-selection').style.display = 'none';
+        document.getElementById('match-result').style.display = 'block';
+        document.querySelector('.match-result').innerText = resultText;
+    }
+</script>
+</body>
+</html>
