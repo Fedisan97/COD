@@ -135,20 +135,17 @@ class Probability{
     Integer idPrize = null;
 
     /***
-     * Метод для записи в map: probabilitiesItems и allSQL
-     * @param textSQL
-     * @param idItemStr
-     * @param probabilityStr
+     * для записи в map probabilitiesItems и allSQL
      */
     protected void recordAndPrintSQL(String textSQL, String idItemStr, String probabilityStr){
-        //Мы получаем id которая имеет тип String, ниже меняем его на Integer
+
         Integer idItem = conversionInInt(idItemStr);
         Double probability = conversionInDouble(probabilityStr);
 
-        //Кладем в map id предметов, и вероятности их выпадения
+
         probabilitiesItems.put(idItem, probability);
 
-        //Кладем в map id предметов, и весь вывод SQL по этим предметам
+
         allSQL.put(idItem, textSQL);
         System.out.println(textSQL);
     }
@@ -156,22 +153,15 @@ class Probability{
 
 
     protected void probabilityDistribution(){
-        //minProbability() - метод который ищет минимальную вероятность у наших предметов
-        //duplicationItem() - метод который использует эту вероятность чтобы создать дубликаты, предметов у которых вероятность больше минимальной
-        //он создает столько дубликатов предметов на сколько вероятность предмета больше минимальной.
+
         Integer[] idItemWithDublicate = duplicationItem(minProbability());
         idPrize = randomItemId(idItemWithDublicate);
         droppedPrize(idPrize);
         }
 
-    /***
-     * Метод который использует минимальную вероятность, чтобы создать дубликаты, предметов у которых вероятность больше минимальной
-     * Он создает столько дубликатов предмета, сколько раз надо прибавить минимальную вероятность к себе самой, чтобы получить вероятность данного предмета.
-      * @param minProbability
-     * @return
-     */
+
     private Integer[] duplicationItem(Double minProbability) {
-        //Считаем на какое количество элементов нам надо создать массив
+
         int sizeMas = countDublicate(minProbability);
         int i = 0;
 
@@ -189,11 +179,7 @@ class Probability{
         return idDublicate;
     }
 
-    /***
-     * Метод считает на какое количество элементов нам надо создать массив
-     * @param minProbability
-     * @return
-     */
+
     private int countDublicate(Double minProbability) {
         int i = 0;
         for (Map.Entry<Integer, Double> entry : probabilitiesItems.entrySet()) {
@@ -203,15 +189,11 @@ class Probability{
                 value = value - minProbability;
             }
         }
-        System.out.println("Размер массива: " + i);
+
         return i;
     }
 
 
-    /***
-     * Метод находит минимальную вероятность которая есть у предметов в этом лутбоксе
-     * @return
-     */
     private Double minProbability() {
         double min = 1;
         for (Map.Entry<Integer, Double> entry : probabilitiesItems.entrySet()) {
@@ -223,54 +205,35 @@ class Probability{
         return min;
     }
 
-    /***
-     * Метод генерирует случайное число, которое используется как индекс для массива idItemWithDublicate
-     * То есть мы случайным образом извлекаем значение из массива idItemWithDublicate, (получаем случайный id предмета)
-     * idItemWithDublicate это массив который состоит из id наших предметов.
-     * @param idItemWithDublicate
-     * @return
-     */
+
     private Integer randomItemId(Integer[] idItemWithDublicate) {
         int size = idItemWithDublicate.length;
 
         Random rn = new Random();
         int randomNum = rn.nextInt(size);
-        System.out.println("рандомное число: " + randomNum);
+   
 
         return idItemWithDublicate[randomNum];
     }
 
-    /***
-     * Метод берет из allSQL, строку которая соответствует введенному id(который ранее был получен в методе randomItemId)
-     * allSQL - это структура данных map вида: ключ-значение, то есть она хранит ключ(id предмета) и
-     * значение(строку которую выводит sql, соответствующую определенному id предмета)
-     * @param idPrize
-     */
+
     private void droppedPrize(Integer idPrize){
         System.out.println("\nВАМ ВЫПАЛ:");
         System.out.println(allSQL.get(idPrize));
     }
 
-    /***
-     * Конвертирует id в тип Integer из типа String
-     * @param idItem
-     * @return
-     */
+
     private Integer conversionInInt(String idItem) {
         return Integer.valueOf(idItem);
     }
 
-    /***
-     * Конвертирует вероятность в тип Double из типа String
-     * @param probability
-     * @return
-     */
+
     private Double conversionInDouble(String probability) {
         return Double.valueOf(probability);
     }
 
     /***
-     * Метод очищает все значения переменных и списков(будет нужен если мы за один раз будем прокручивать несколько лутбоксов)
+     нужен если мы за один раз будем прокручивать несколько лутбоксов)
      */
     private void clear(){
             probabilitiesItems.clear();
@@ -279,6 +242,13 @@ class Probability{
 
 
 }
+
+
+
+
+
+
+
 
 
 
