@@ -1,3 +1,4 @@
+
 package com.company;
 
 import java.util.*;
@@ -211,7 +212,7 @@ class Probability{
 
         Random rn = new Random();
         int randomNum = rn.nextInt(size);
-   
+
 
         return idItemWithDublicate[randomNum];
     }
