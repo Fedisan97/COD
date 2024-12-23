@@ -236,7 +236,7 @@ class Probability{
     /***
      нужен если мы за один раз будем прокручивать несколько лутбоксов)
      */
- 
+   private void clear(){
             probabilitiesItems.clear();
             allSQL.clear();
     }
