@@ -32,7 +32,7 @@ public class Main {
                                 " FROM category" +
                                 " INNER JOIN item " +
                                 " ON item.category = category.id" +
-                                "  INNER JOIN lootboxitems " +
+                                " INNER JOIN lootboxitems " +
                                 " ON category.id = lootboxitems.item_id" +
                                 " INNER JOIN loot" +
                                 " ON lootboxitems.lootbox_id = loot.id"+
@@ -62,16 +62,16 @@ public class Main {
                 ResultSet St = statement.executeQuery(
 
                         "SELECT item.name, category.name as category_name, lootboxitems.lootbox_id as loot_id, loot.name as lname, loot.description as desc, loot.rollnumber as roll, rarity.numbers as probability, category.id as id  " +
-                        " FROM category" +
-                        " INNER JOIN item " +
-                        " ON item.category = category.id" +
-                        "  INNER JOIN lootboxitems " +
-                        " ON category.id = lootboxitems.item_id" +
-                        " INNER JOIN loot" +
-                        " ON lootboxitems.lootbox_id = loot.id"+
-                        " INNER JOIN rarity" +
-                        " ON rarity.id = category.id\n" +
-                        "WHERE loot.name = 'Геройский' "
+                                " FROM category" +
+                                " INNER JOIN item " +
+                                " ON item.category = category.id" +
+                                "  INNER JOIN lootboxitems " +
+                                " ON category.id = lootboxitems.item_id" +
+                                " INNER JOIN loot" +
+                                " ON lootboxitems.lootbox_id = loot.id"+
+                                " INNER JOIN rarity" +
+                                " ON rarity.id = category.id\n" +
+                                "WHERE loot.name = 'Геройский' "
                 );
                 while (St.next()) {
                     String vue1 = St.getString("name");
@@ -123,8 +123,8 @@ public class Main {
                 probability.probabilityDistribution();
                 break;
         }
-        }
     }
+}
 
 class Probability{
 
@@ -158,7 +158,7 @@ class Probability{
         Integer[] idItemWithDublicate = duplicationItem(minProbability());
         idPrize = randomItemId(idItemWithDublicate);
         droppedPrize(idPrize);
-        }
+    }
 
 
     private Integer[] duplicationItem(Double minProbability) {
@@ -236,13 +236,20 @@ class Probability{
     /***
      нужен если мы за один раз будем прокручивать несколько лутбоксов)
      */
-   private void clear(){
-            probabilitiesItems.clear();
-            allSQL.clear();
+    private void clear(){
+        probabilitiesItems.clear();
+        allSQL.clear();
     }
 
 
 }
+
+
+
+
+
+
+
 
 
 
